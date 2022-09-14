@@ -79,7 +79,7 @@ exports.forgotpassword = async (req, res, next) => {
             return next(new ErrorResponse("You haven't registered email can't be sent", 404))
         }
 
-        const resetToken = user.getResetPasswordToken();
+        const resetToken = await user.getResetPasswordToken();
         await user.save();
 
         const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
